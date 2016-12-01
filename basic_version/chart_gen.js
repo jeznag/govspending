@@ -100,7 +100,7 @@ function generateSVG() {
   const height = 1000 - margin;
 
   const svg = d3.select('body')
-    .append('svg')
+    .insert('svg', '#disclaimer')
       .attr('width', width + margin)
       .attr('height', height + margin)
       .append('g')
