@@ -11,6 +11,7 @@ const populationOfStates = {
 };
 
 let renderMode = 'perCapita';
+let currentDrillDownKey;
 
 function draw(data) {
   const svg = generateSVG();
@@ -60,6 +61,7 @@ function addDrillDown(data, myChart) {
     .selectAll('g.dimple-legend')
     .on('click', (legendKey) => {
       drillDownData(legendKey.key, data, myChart);
+      d3.event.stopPropagation();
     });
 
   d3
@@ -67,14 +69,25 @@ function addDrillDown(data, myChart) {
     .on('click', (bar) => {
       const category = bar.key.substring(0, bar.key.indexOf('_'));
       drillDownData(category, data, myChart);
+      d3.event.stopPropagation();
+    });
+
+  d3
+    .select('svg')
+    .on('click', () => {
+      drillDownData(null, data, myChart);
     });
 }
 
 function drillDownData(chosenCategory, data, myChart) {
   const dataToDrillDown = getDataGivenRenderMode(data);
-  if (myChart.data.length !== dataToDrillDown.length) {
+  const shouldShowAllCategories = (myChart.data.length !== dataToDrillDown.length && currentDrillDownKey === chosenCategory) ||
+    !chosenCategory;
+  if (shouldShowAllCategories) {
     myChart.data = dataToDrillDown;
+    currentDrillDownKey = null;
   } else {
+    currentDrillDownKey = chosenCategory;
     myChart.data = dimple.filterData(dataToDrillDown, 'Category', chosenCategory);
   }
   myChart.draw(800);
