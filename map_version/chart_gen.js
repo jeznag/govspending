@@ -59,7 +59,6 @@ function generateSmallMultiple(data, chosenCategory, svg, shouldModifyData) {
   const dataForChart = shouldModifyData ? getDataGivenRenderMode(data) : data;
   const myChart = new dimple.chart(svg, getDataGivenRenderMode(data));
   if (chosenCategory !== 'All') {
-    console.log('chosenCategory', chosenCategory);
     myChart.data = dimple.filterData(dataForChart, 'Category', chosenCategory);
   }
   const x = myChart.addCategoryAxis('x', ['State']);
