@@ -110,3 +110,7 @@ rect.dimple-average {
   fill: #add8e6 !important;
   stroke: #add8e6 !important;
 }
+
+#containerChooseCategoryForMap {
+  margin-bottom: 20px;
+}
