@@ -3,11 +3,12 @@
 <head>
   <meta charset='utf-8'>
   <script src='d3.v3.js'></script>
+  <script src='d3.geo.js'></script>
   <script src='dimple.v2.0.0.min.js'></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="lib/chosen.min.css">
 </head>
 <body>
-  <script src="./chart_gen.js"></script>
   <h1 class="title">Australian Government Spending</h1>
   <h4 class="title">Disclaimer: read <a href="#disclaimer">limitations of data below chart</a>.</h4>
   <div class="onoffswitch">
@@ -16,6 +17,16 @@
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch"></span>
     </label>
+  </div>
+  <div id="containerChooseCategoryForMap">
+    <label for="chooseCategoryForMap">Choose Spending Category</label>
+    <select id="chooseCategoryForMap">
+      <option value="All" selected="true">All</option>
+    </select>
+  </div>
+  <div id="containerForMap" class="marginBottom">
+  </div>
+  <div id="containerForSmallMultiples">
   </div>
   <div id="disclaimer">
     This data has not been peer reviewed and has inaccuracies. For details of the methodology, refer to <a href="http://jeremynagel.blogspot.com.au/2016/11/analysis-of-australian-government_29.html">the blog post detailing the data collection process</a><br>
@@ -29,5 +40,14 @@
     <br>
     Initial data gathering and data visualisation done by <a href="https://au.linkedin.com/in/nageljeremy">Jeremy Nagel</a>. Contributions welcome on <a href="https://github.com/jeznag/govspending">GitHub</a>.
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="./lib/d3.geo.js"></script>
+  <script src="./lib/d3.tip.v0.6.3.js"></script>
+  <script src="./lib/chosen.jquery.min.js"></script>
+  <script src="./australia_map.js"></script>
+  <script src="./chart_gen.js"></script>
+  <script src="//use.typekit.net/lmv4qmg.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
 </body>
 </html>
